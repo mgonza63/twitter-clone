@@ -1,5 +1,7 @@
 const form = document.querySelector('form');
 const spinner = document.querySelector('.spinner');
+const API_URL = 'http://localhost:3000/tweets';
+
 
 spinner.style.display = 'none';
 
@@ -13,7 +15,15 @@ form.addEventListener('submit', (event) => {
         name,
         content
     };
-    console.log(tweet);
     form.style.display = 'none';
     spinner.style.display = '';
+
+    fetch(API_URL, {
+        method: 'POST',
+        body: JSON.stringify(tweet),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
 })
