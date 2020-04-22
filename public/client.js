@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:3000/tweets';
 
 const tweetsElement = document.querySelector('.tweets')
 
-spinner.style.display = '';
+spinner.style.display = 'none';
 
 listAllTweets();
 
