@@ -2,11 +2,13 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
+require('dotenv').config()
+
 const app = express();
 
 // db
 const monk = require('monk');
-const db = monk('localhost/twitter'); // twitter is the name of the db
+const db = monk(process.env.MONGO_URI || 'localhost/twitter'); // twitter is the name of the db
 const tweets = db.get('tweets'); // name of the collection
 
 // middleware
