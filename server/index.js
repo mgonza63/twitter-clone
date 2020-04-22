@@ -20,6 +20,15 @@ app.get('/', (req, res) => {
     })
 });
 
+app.get('/tweets',(req, res)  => {
+    tweets
+    // find all and respond with json data
+    .find()
+    .then(tweets => {
+        res.json(tweets);
+    })
+})
+
 // Validation for the POST request
 function isTweetValid(tweet) {
     return tweet.name && tweet.name.toString().trim() !== '' &&
