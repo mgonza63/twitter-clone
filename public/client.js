@@ -1,4 +1,7 @@
 const form = document.querySelector('form');
+const spinner = document.querySelector('.spinner');
+
+spinner.style.display = 'none';
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -11,4 +14,6 @@ form.addEventListener('submit', (event) => {
         content
     };
     console.log(tweet);
+    form.style.display = 'none';
+    spinner.style.display = '';
 })
