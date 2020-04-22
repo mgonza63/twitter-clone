@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:3000/tweets';
 
 const tweetsElement = document.querySelector('.tweets')
 
-spinner.style.display = 'none';
+spinner.style.display = '';
 
 listAllTweets();
 
@@ -37,16 +37,22 @@ form.addEventListener('submit', (event) => {
             spinner.style.display = 'none';
             form.style.display = '';
             form.reset();
+            // list tweets again so they appear without refreshing
+            listAllTweets();
         }) 
 
 })
 
 function listAllTweets() {
+    // blank it out before showing them
+    // so the latest tweet shows above
+    tweetsElement.innerHTML = '';
     // getting the json data from the back-end
     fetch(API_URL)
         .then(response  => response.json())
         .then(tweets => {
             console.log(tweets);
+            tweets.reverse();
             tweets.forEach(tweet => {
                 // header element and set as
                 // the name.tweet 
@@ -59,11 +65,15 @@ function listAllTweets() {
                 const contents = document.createElement('p');
                 contents.textContent = tweet.content;
 
+                const date = document.createElement('small')
+                date.textContent = new Date(tweet.created);
                 // append header(name) and content to the div
                 div.appendChild(header);
                 div.appendChild(contents);
+                div.appendChild(date);
 
                 tweetsElement.appendChild(div);
             })
+            spinner.style.display = 'none';
         })
 }
