@@ -31,7 +31,8 @@ app.post('/tweets', (req, res) => {
     if (isTweetValid(req.body)) {
         const tweet = {
             name: req.body.name.toString(),
-            content: req.body.content.toString()
+            content: req.body.content.toString(),
+            created: new Date()
         };
         
         // calls the collection and adds the tweet to it with monk
