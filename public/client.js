@@ -1,8 +1,8 @@
 const form = document.querySelector('form');
 const spinner = document.querySelector('.spinner');
-const API_URL = 'http://localhost:3000/tweets';
+// const API_URL = 'http://localhost:3000/tweets';
 
-// const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:3000/tweets' : 'https://tweet-v2.herokuapp.com';
+const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:3000/tweets' : 'https://tweet-v2.herokuapp.com/tweets';
 const tweetsElement = document.querySelector('.tweets')
 
 spinner.style.display = '';
