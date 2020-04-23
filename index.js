@@ -5,21 +5,24 @@ const cors = require('cors');
 require('dotenv').config()
 
 const app = express();
-
+const path = require('path')
 // db
 const monk = require('monk');
 const db = monk(process.env.MONGO_URI || 'localhost/twitter'); // twitter is the name of the db
 const tweets = db.get('tweets'); // name of the collection
 
+const PORT = process.env.PORT || 3000;
+
 // middleware
 app.use(cors());
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
 //GET request
 app.get('/', (req, res) => {
-    res.json({
-        message: 'hello 🐔'
-    })
+    res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 app.get('/tweets',(req, res)  => {
@@ -62,6 +65,6 @@ app.post('/tweets', (req, res) => {
 })
 
 
-app.listen(process.env.PORT, () => {
-    console.log('Listening on port 3000');
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
 })
