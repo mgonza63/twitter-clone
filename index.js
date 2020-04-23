@@ -62,6 +62,6 @@ app.post('/tweets', (req, res) => {
 })
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
     console.log('Listening on port 3000');
 })
